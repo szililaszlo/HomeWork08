@@ -64,4 +64,37 @@ public class FileOperation {
             }
         }
     }
+
+    //3
+    public static void fileMakerWithContent(String destination, String content ,String name_type) {
+
+        // fout változó inicializálása
+        FileOutputStream fout = null;
+        try {
+            // fájl mentési hely megadás és név+ típus megadás
+            fout = new FileOutputStream(destination + name_type);
+
+            //a paraméterben kapott string beleírása a fájlba, String konvertálás után
+             fout.write(content.getBytes());
+
+            // catch amely kezeli a hibát ha  a fájl nem található
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+            //általános hiba elkapás
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        } finally {
+            // if ág azért hogy ne legyen nullPointer hiba
+            if (fout != null) {
+                try {
+                    //file kapcsolat lezárás
+                    fout.close();
+                } catch (IOException e) {
+                    //ha hiba lépne fel lezárás során az itt kezelhető
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
 }
