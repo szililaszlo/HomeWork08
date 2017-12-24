@@ -131,4 +131,47 @@ public class FileOperation {
             }
         }
     }
+
+    //5
+    public static void printMatrixIntoFile(int[][] mtx) {
+
+        // fout változó inicializálása
+        FileOutputStream fout = null;
+        try {
+            // fájl mentési hely megadás és név+ típus megadás
+            fout = new FileOutputStream("E:\\matrix.txt");
+
+            //a paraméterben kapott 2d-s tömb beleírása a fájlba, for ciklussal történő bejárás
+            for (int i = 0; i < mtx.length; i++) {
+                for (int j = 0; j < mtx[i].length; j++) {
+                    Integer element = mtx[i][j];
+                    //String konvertálás és érétk beírás
+                    fout.write(Integer.toString(element).getBytes());
+                    //szóköz írás
+                    fout.write(" ".getBytes());
+                }
+                //új sor írása, mátrix forma megkapása
+                fout.write("\r\n".getBytes());
+            }
+
+            // catch amely kezeli a hibát ha  a fájl nem található
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+            //általános hiba elkapás
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        } finally {
+            // if ág azért hogy ne legyen nullPointer hiba
+            if (fout != null) {
+                try {
+                    //file kapcsolat lezárás
+                    fout.close();
+                } catch (IOException e) {
+                    //ha hiba lépne fel lezárás során az itt kezelhető
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
 }
