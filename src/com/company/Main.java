@@ -11,6 +11,9 @@ public class Main {
 
         //3
         FileOperation.fileMakerWithContent("E:\\","Hello World","welcome.txt");
+
+        //4
+        FileOperation.fileMakerWithContent("E://",4,"Created By: Laszlo Szili", "part.txt");
     }
 
 }
